@@ -5,8 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GitHubReleaseViewer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="800" Width="1200">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBox x:Name="textBox" HorizontalAlignment="Stretch" VerticalContentAlignment="Center" Margin="5" TextWrapping="Wrap" Text="{Binding RepositoryName}" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="1"/>
+        <Label x:Name="label" Content="Repository" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Grid.Row="0"/>
+        <DataGrid x:Name="dataGrid" Grid.Column="1" ItemsSource="{Binding Releases}" HorizontalAlignment="Stretch" Margin="5" Grid.Row="1" VerticalAlignment="Stretch">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate x:Uid="DataTemplate_1">
+                            <DataGrid x:Name="dataGrid" ItemsSource="{Binding assets}" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Stretch"/>
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
     </Grid>
 </Window>
